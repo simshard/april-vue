@@ -15,18 +15,21 @@ window.Vue = require('vue');
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
- Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 Vue.component('newsfeed', require('./components/Newsfeed.vue').default);
 Vue.component('giphy', require('./components/Giphy.vue').default);
 
-
+/*
+Filter function : allows applying moment  date library  to Vue  instance
+not completely understood -ES6 stuff -spread /rest  operator and modele import/exports
+ */
 var moment = require('moment');
 
 require('moment/locale/en-gb'); // locales all in lower-case
 
-exports.install = function (Vue, options) {
-    Vue.prototype.moment = function (...args) {
+exports.install = function(Vue, options) {
+    Vue.prototype.moment = function(...args) {
         return moment(...args);
     };
 }

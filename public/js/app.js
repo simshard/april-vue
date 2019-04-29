@@ -67124,6 +67124,10 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('newsfeed', __webpack_require__(/*! ./components/Newsfeed.vue */ "./resources/js/components/Newsfeed.vue")["default"]);
 Vue.component('giphy', __webpack_require__(/*! ./components/Giphy.vue */ "./resources/js/components/Giphy.vue")["default"]);
+/*
+Filter function : allows applying moment  date library  to Vue  instance
+not completely understood -ES6 stuff -spread /rest  operator and modele import/exports
+ */
 
 var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 
@@ -67176,7 +67180,12 @@ try {
  */
 
 
-window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"); // window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* axios.defaults.headers are not set  here to the  Laravel defaults because the requests to
+ * remote resource fail  even when  I try to set headers with a  custom middleware
+ * 'X-Requested-With' and 'Access-Control-Allow-Headers'
+ * */
+// window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that

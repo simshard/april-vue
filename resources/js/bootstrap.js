@@ -21,6 +21,10 @@ try {
 
 window.axios = require('axios');
 
+/* axios.defaults.headers are not set  here to the  Laravel defaults because the requests to
+ * remote resource fail  even when  I try to set headers with a  custom middleware
+ * 'X-Requested-With' and 'Access-Control-Allow-Headers'
+ * */
 // window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**
