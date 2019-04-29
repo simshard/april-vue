@@ -13,7 +13,10 @@
         <img :src=item.urlToImage :alt= item.content width="250px" class="card-img-top">
         <div class="card-body">
           <h3 class="card-title"><a :href=item.url target="_blank">{{ item.title }}</a></h3>
-          <p class="card-text">{{ item.description }}<br> <small><em>{{ item.publishedAt }}</em>  </small></p>
+          <p class="card-text">{{ item.description }}
+            <br>
+            <small><em>{{moment(item.publishedAt).format("Do MMM YYYY hh:mm a") }}</em></small>
+           </p>
       </div>
       </div>
     </div>
@@ -46,7 +49,9 @@ export default {
     created() {
           axios.get(url).then(response => {
             this.results = response.data.articles;
-      console.log(response.data);
+            this.pubdate = response.data.articles.publishedAt;
+      console.log(response.results);
+
           })
         }
 }

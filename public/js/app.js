@@ -1891,6 +1891,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 var url = "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=7210fbd55dc64565b5dd2830b98073bc";
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1906,7 +1909,8 @@ var url = "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=7210fbd5
 
     axios.get(url).then(function (response) {
       _this.results = response.data.articles;
-      console.log(response.data);
+      _this.pubdate = response.data.articles.publishedAt;
+      console.log(response.results);
     });
   }
 });
@@ -54928,10 +54932,20 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "card-text" }, [
-                _vm._v(_vm._s(item.description)),
+                _vm._v(_vm._s(item.description) + "\r\n            "),
                 _c("br"),
                 _vm._v(" "),
-                _c("small", [_c("em", [_vm._v(_vm._s(item.publishedAt))])])
+                _c("small", [
+                  _c("em", [
+                    _vm._v(
+                      _vm._s(
+                        _vm
+                          .moment(item.publishedAt)
+                          .format("Do MMM YYYY hh:mm a")
+                      )
+                    )
+                  ])
+                ])
               ])
             ])
           ])
@@ -67110,6 +67124,19 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('newsfeed', __webpack_require__(/*! ./components/Newsfeed.vue */ "./resources/js/components/Newsfeed.vue")["default"]);
 Vue.component('giphy', __webpack_require__(/*! ./components/Giphy.vue */ "./resources/js/components/Giphy.vue")["default"]);
+
+var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+
+__webpack_require__(/*! moment/locale/en-gb */ "./node_modules/moment/locale/en-gb.js"); // locales all in lower-case
+
+
+exports.install = function (Vue, options) {
+  Vue.prototype.moment = function () {
+    return moment.apply(void 0, arguments);
+  };
+};
+
+Vue.use(exports);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

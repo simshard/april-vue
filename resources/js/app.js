@@ -20,6 +20,18 @@ window.Vue = require('vue');
 Vue.component('newsfeed', require('./components/Newsfeed.vue').default);
 Vue.component('giphy', require('./components/Giphy.vue').default);
 
+
+var moment = require('moment');
+
+require('moment/locale/en-gb'); // locales all in lower-case
+
+exports.install = function (Vue, options) {
+    Vue.prototype.moment = function (...args) {
+        return moment(...args);
+    };
+}
+
+Vue.use(exports);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
